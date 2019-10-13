@@ -4,7 +4,7 @@
 
 from __future__ import print_function
 
-
+## importing libraries
 import os
 import numpy as np
 import tensorflow as tf
@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 import hy_param
 
 from tensorflow.examples.tutorials.mnist import input_data
+
+## Taking input from the tensorflow examples-
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 # Pointing the model checkpoint
@@ -28,7 +30,8 @@ input_x = tf.get_default_graph().get_operation_by_name("input_x").outputs[0]
 # Loading Prediction operation
 prediction = tf.get_default_graph().get_operation_by_name("prediction").outputs[0]
 
-
+## With an TF session we will run predictions
+## And then pring the logits
 with tf.Session() as sess:
     # Restoring the model from the checkpoint
     saver.restore(sess, checkpoint_file)
@@ -41,5 +44,6 @@ with tf.Session() as sess:
 
 # Display the feed image
 print ("Input image:")
+# Plot the gray image
 plt.gray()
 plt.imshow(test_data.reshape([28,28]))
